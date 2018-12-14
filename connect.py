@@ -17,8 +17,9 @@ def connect():
         cur = conn.cursor()
 
  # execute a statement
-        print('PostgreSQL database version:')
-        cur.execute('SELECT version()')
+        # print('PostgreSQL database version:')
+        # cur.execute('SELECT version()')
+        cur.execute('SELECT * from art LIMIT 100')
 
         # display the PostgreSQL database server version
         db_version = cur.fetchone()

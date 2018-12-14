@@ -28,13 +28,16 @@
             </thead>
 
             <tbody>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td> <button type="button" name="button">Editar</button> </td>
-              </tr>
+              {% for art in articulos %}
+                <tr>
+                  <td> {{ art.codigo }} </td>
+                  <td> {{ art.descripcion }} </td>
+                  <td> {{ art.tarifa1 }} </td>
+                  <td> <button type="button" name="button">Editar</button> </td>
+                </tr>
+              {% endfor %}
             </tbody>
+
           </table>
         </div>
       </section>
