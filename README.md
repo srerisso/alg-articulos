@@ -17,14 +17,17 @@ Django App : Articulos (/wms-alg/articulos)
 
 ## Different environments mean different headaches.
 
-- Ubuntu 18.04 LTS
+### Ubuntu 18.04 LTS
 
 Versiones instaladas :
   - Django 1.11.17
   - Python 2.7.15rc1
 
-- MacOS
+### MacOS
 
 Versiones instaladas :
   -
   -
+
+Python modules necessary:
+- psycopg2, 
