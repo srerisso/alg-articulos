@@ -19,7 +19,7 @@
         <div class="container">
           <!-- Tabla con los artículos a editar   -->
           {% if articulos %}
-          <table class="table">
+          <table class="table is-hoverable is-striped">
             <thead>
               <tr>
                 <td>Código</td>
@@ -45,25 +45,27 @@
           {% endif %}
 
           {% if articulos.has_other_pages %}
-          <ul class="pagination">
+          <nav class="pagination is-centered" role="navigation" aria-label="pagination">
             {% if articulos.has_previous %}
-              <li><a href="?page={{ articulos.previous_page_number }}">&laquo;</a></li>
-            {% else %}
-              <li class="disabled"><span>&laquo;</span></li>
+              <a class="pagination-previous" href="?page={{ articulos.previous_page_number }}">Anterior</a>
             {% endif %}
+
+            <ul class="pagination-list">
             {% for i in articulos.paginator.page_range %}
               {% if articulos.number == i %}
-                <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                <li class="pagination-link is-current"><span>{{ i }} </li>
               {% else %}
-                <li><a href="?page={{ i }}">{{ i }}</a></li>
+                <li><a class="pagination-link" href="?page={{ i }}">{{ i }}</a></li>
               {% endif %}
             {% endfor %}
+            </ul>
+
             {% if articulos.has_next %}
-              <li><a href="?page={{ articulos.next_page_number }}">&raquo;</a></li>
+              <a class="pagination-next" href="?page={{ articulos.next_page_number }}">Siguiente</a>
             {% else %}
-              <li class="disabled"><span>&raquo;</span></li>
+              <li class="disabled"></li>
             {% endif %}
-          </ul>
+          </nav>
           {% endif %}
         </div>
       </section>

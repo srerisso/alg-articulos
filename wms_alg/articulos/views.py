@@ -6,7 +6,7 @@ def index(request):
     articulos_list = Articulo.objects.all()
     # Listado de articulos paginados
     page = request.GET.get('page', 1)
-    paginator = Paginator(articulos_list, 100)
+    paginator = Paginator(articulos_list, 200)
 
     try:
         articulos = paginator.page(page)
