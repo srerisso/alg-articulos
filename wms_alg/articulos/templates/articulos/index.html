@@ -3,22 +3,22 @@
   <head>
     <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>ALG AF Data Analyzer</title>
+        <title>Alugandia - WMS</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
         <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
       </head>
       <body>
       <section class="section">
         <div class="container">
-          <h1 class="title">Tabla Artículos </h1>
-          <p>Listado de artículos de Alugandia.</p>
+          <h1 class="title">Artículos</h1>
+          <p>Listado de artículos a corregir.</p>
         </div>
       </section>
 
       <section class="section">
         <div class="container">
           <!-- Tabla con los artículos a editar   -->
-          {% if first100 %}
+          {% if articulos %}
           <table class="table">
             <thead>
               <tr>
@@ -29,7 +29,7 @@
             </thead>
 
             <tbody>
-              {% for art in first100 %}
+              {% for art in articulos %}
                 <tr>
                   <td> {{ art.codigo }} </td>
                   <td> {{ art.descripcion }} </td>
@@ -42,6 +42,28 @@
           </table>
           {% else %}
             <p>No hay Articulos.</p>
+          {% endif %}
+
+          {% if articulos.has_other_pages %}
+          <ul class="pagination">
+            {% if articulos.has_previous %}
+              <li><a href="?page={{ articulos.previous_page_number }}">&laquo;</a></li>
+            {% else %}
+              <li class="disabled"><span>&laquo;</span></li>
+            {% endif %}
+            {% for i in articulos.paginator.page_range %}
+              {% if articulos.number == i %}
+                <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+              {% else %}
+                <li><a href="?page={{ i }}">{{ i }}</a></li>
+              {% endif %}
+            {% endfor %}
+            {% if articulos.has_next %}
+              <li><a href="?page={{ articulos.next_page_number }}">&raquo;</a></li>
+            {% else %}
+              <li class="disabled"><span>&raquo;</span></li>
+            {% endif %}
+          </ul>
           {% endif %}
         </div>
       </section>

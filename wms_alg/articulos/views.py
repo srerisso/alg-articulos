@@ -1,16 +1,22 @@
-from django.http import HttpResponse
-from django.template import loader
+from django.shortcuts import render
 from .models import Articulo
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 def index(request):
-    first100 = Articulo.objects.order_by('descripcion')[:100]
-    template = loader.get_template('articulos/index.html')
-    context = {
-        'first100' : first100,
-    }
-    # output = ', '.join(art.descripcion for art in first100)
-    return HttpResponse(template.render(context, request))
+    articulos_list = Articulo.objects.all()
     # Listado de articulos paginados
+    page = request.GET.get('page', 1)
+    paginator = Paginator(articulos_list, 100)
+
+    try:
+        articulos = paginator.page(page)
+    except PageNotAnInteger:
+        articulos = paginator.page(1)
+    except EmptyPage:
+        articulos = paginator.page(paginator.num_pages)
+
+    return render(request, 'articulos/index.html', {'articulos' : articulos})
+
 
 
 def detail(request, articulo_id):
