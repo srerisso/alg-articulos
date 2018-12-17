@@ -76,10 +76,11 @@ WSGI_APPLICATION = 'wms_alg.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'alugandia',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'wms_alugandia',
+        'USER': 'root',
+        'PASSWORD': 'rootpastinaca',
+        'HOST' : '',
     }
 }
 

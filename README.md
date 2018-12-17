@@ -30,4 +30,4 @@ Versiones instaladas :
   -
 
 Python modules necessary:
-- psycopg2, 
+- psycopg2, mysqlclient
