@@ -30,4 +30,4 @@ Versiones instaladas :
   -
 
 Python modules necessary:
-- psycopg2, mysqlclient
+- psycopg2, mysqlclient, django-inplaceedit

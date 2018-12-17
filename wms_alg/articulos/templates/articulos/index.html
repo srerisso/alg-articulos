@@ -25,21 +25,31 @@
                 <td>Código</td>
                 <td>Descripción</td>
                 <td>Tarifa 1</td>
+                <td></td>
               </tr>
             </thead>
 
             <tbody>
               {% for art in articulos %}
+              <form action="{% url 'articulos:save' art.id %}" method="post">
+                {% csrf_token %}
                 <tr>
                   <td> {{ art.codigo }} </td>
                   <td> {{ art.descripcion }} </td>
                   <td> {{ art.tarifa1 }} </td>
-                  <td> <button type="button" name="button">Editar</button> </td>
+                  <td> {% if art.tarifa1 == 0.0 %}
+                          <button type="submit" name="button" class="button is-warning">Guardar</button>
+                       {% else %}
+                          <!-- Cuando ya he guardado el valor, cambio el color del botón -->
+                          <button type="submit" name="button" class="button is-success">Guardar</button>
+                      {% endif %}
+                  </td>
                 </tr>
+              </form>
               {% endfor %}
             </tbody>
-
           </table>
+
           {% else %}
             <p>No hay Articulos.</p>
           {% endif %}
@@ -67,6 +77,7 @@
             {% endif %}
           </nav>
           {% endif %}
+
         </div>
       </section>
 

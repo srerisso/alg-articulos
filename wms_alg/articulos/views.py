@@ -1,6 +1,8 @@
 from django.shortcuts import render
-from .models import Articulo
+from django.http import HttpResponse, HttpResponseRedirect
+from django.urls import reverse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from .models import Articulo
 
 def index(request):
     articulos_list = Articulo.objects.all()
@@ -17,7 +19,10 @@ def index(request):
 
     return render(request, 'articulos/index.html', {'articulos' : articulos})
 
-
-
 def detail(request, articulo_id):
     return HttpResponse("You're looking at articulo %s." % articulo_id)
+
+def save(request, articulo_id):
+    Articulo.save()
+    return HttpResponseRedirect(reverse('articulos:results', args=(articulo.id,)))
+    # Articulo.save(datos)
