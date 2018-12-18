@@ -36,8 +36,9 @@
                 <tr>
                   <td> {{ art.codigo }} </td>
                   <td> {{ art.descripcion }} </td>
-                  <td> {{ art.tarifa1 }} </td>
-                  <td> {% if art.tarifa1 == 0.0 %}
+                  <td> <input type="text" name="tarifa1" value="{{ art.tarifa1 }}"> </td>
+                  <td>
+                      {% if art.tarifa1 == 0.0 %}
                           <button type="submit" name="button" class="button is-warning">Guardar</button>
                        {% else %}
                           <!-- Cuando ya he guardado el valor, cambio el color del botón -->

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -23,6 +23,8 @@ def detail(request, articulo_id):
     return HttpResponse("You're looking at articulo %s." % articulo_id)
 
 def save(request, articulo_id):
-    Articulo.save()
-    return HttpResponseRedirect(reverse('articulos:results', args=(articulo.id,)))
     # Articulo.save(datos)
+    articulo_saving = get_object_or_404(Articulo, pk=articulo_id)
+    articulo_saving.save()
+
+    return HttpResponseRedirect(reverse('articulos:index', {'form': form}))
