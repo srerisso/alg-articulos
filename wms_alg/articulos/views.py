@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
-from django.urls import reverse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Articulo
 from .forms import ArticuloForm
@@ -24,12 +23,18 @@ def index(request):
 def detail(request, articulo_id):
     return HttpResponse("You're looking at articulo %s." % articulo_id)
 
+# guarda function
 def guarda(request):
     # Formulario con datos, siempre será POST
-    a = Articulo.objects.get(pk=1)
-    f = ArticuloForm(request.POST, instance=a)
-    if form.is_valid():
-        form.save()
+    if request.method == 'POST':
+        codigo = request.POST['codigo']
+        descripcion = request.POST['descripcion']
+        tarifa1 = request.POST['tarifa1']
 
-    # return HttpResponseRedirect(reverse('articulos/index.html', {'form': form}))
-    return render(request, 'articulos:index')
+        Articulo.objects.create(
+            codigo = codigo,
+            descripcion = descripcion,
+            tarifa1 = tarifa1
+        )
+
+        return HttpResponse('')

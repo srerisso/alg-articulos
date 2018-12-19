@@ -6,8 +6,7 @@
         <title>Alugandia - WMS</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
         <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        {% load staticfiles %}
       </head>
       <body>
       <section class="section">
@@ -33,18 +32,18 @@
 
             <tbody>
               {% for art in articulos %}
-              <form action="{% url 'articulos:guarda' art.id %}" method="post">
+              <form action="{% url 'articulos:guarda' art.id %}" id="form{{ art.id }}" method="post">
                 {% csrf_token %}
                 <tr>
-                  <td> {{ art.codigo }} </td>
-                  <td> {{ art.descripcion }} </td>
-                  <td> <input type="text" name="tarifa1" value="{{ art.tarifa1 }}"> </td>
+                  <td> <input type="text" id="codigo" disabled value="{{ art.codigo }}"> </td>
+                  <td> <input type="text" id="descripcion" disabled value="{{ art.descripcion }}"> </td>
+                  <td> <input type="text" id="tarifa1" value="{{ art.tarifa1 }}"> </td>
                   <td>
                       {% if art.tarifa1 == 0.0 %}
-                          <button type="submit" name="button" class="button is-warning">Guardar</button>
+                          <button name="button" class="button is-warning" id="submit-yellow-btn">Guardar</button>
                        {% else %}
                           <!-- Cuando ya he guardado el valor, cambio el color del botón -->
-                          <button type="submit" name="button" class="button is-success">Guardar</button>
+                          <button name="button" class="button is-success">Guardar</button>
                       {% endif %}
                   </td>
                 </tr>
@@ -83,6 +82,9 @@
 
         </div>
       </section>
+
+      <script src="{% static "js/jquery-3.3.1.js" %}"></script>
+      <script src="{% static "js/wms-jquery.js" %}"></script>
 
       </body>
 </html>
