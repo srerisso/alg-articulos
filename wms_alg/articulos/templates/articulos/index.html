@@ -6,6 +6,8 @@
         <title>Alugandia - WMS</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
         <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
       </head>
       <body>
       <section class="section">
@@ -31,7 +33,7 @@
 
             <tbody>
               {% for art in articulos %}
-              <form action="{% url 'articulos:save' art.id %}" method="post">
+              <form action="{% url 'articulos:guarda' art.id %}" method="post">
                 {% csrf_token %}
                 <tr>
                   <td> {{ art.codigo }} </td>

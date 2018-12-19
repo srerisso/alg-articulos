@@ -1,8 +1,10 @@
+# -*- coding: utf-8 -*-
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Articulo
+from .forms import ArticuloForm
 
 def index(request):
     articulos_list = Articulo.objects.all()
@@ -22,9 +24,12 @@ def index(request):
 def detail(request, articulo_id):
     return HttpResponse("You're looking at articulo %s." % articulo_id)
 
-def save(request, articulo_id):
-    # Articulo.save(datos)
-    articulo_saving = get_object_or_404(Articulo, pk=articulo_id)
-    articulo_saving.save()
+def guarda(request):
+    # Formulario con datos, siempre será POST
+    a = Articulo.objects.get(pk=1)
+    f = ArticuloForm(request.POST, instance=a)
+    if form.is_valid():
+        form.save()
 
-    return HttpResponseRedirect(reverse('articulos:index', {'form': form}))
+    # return HttpResponseRedirect(reverse('articulos/index.html', {'form': form}))
+    return render(request, 'articulos:index')
