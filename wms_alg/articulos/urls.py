@@ -8,6 +8,8 @@ urlpatterns = [
     url(r'^$', views.index, name='index'),
     # ex: /articulos/5/
     url(r'^(?P<articulo_id>[0-9]+)/$', views.detail, name='detail'),
+    # ex: /articulos/5/guarda/
+    # url(r'^(?P<articulo_id>[0-9]+)/guarda/$', views.guarda, name='guarda'),
     # ex: /articulos/guarda/
-    url(r'^(?P<articulo_id>[0-9]+)/guarda/$', views.guarda, name='guarda'),
+    url(r'^guarda/$', views.guarda, name='guarda'),
 ]

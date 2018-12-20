@@ -32,19 +32,14 @@
 
             <tbody>
               {% for art in articulos %}
-              <form action="{% url 'articulos:guarda' art.id %}" id="form{{ art.id }}" method="post">
+              <form action="{% url 'articulos:guarda' %}" id="form" method="post">
                 {% csrf_token %}
                 <tr>
                   <td> <input type="text" id="codigo" disabled value="{{ art.codigo }}"> </td>
                   <td> <input type="text" id="descripcion" disabled value="{{ art.descripcion }}"> </td>
                   <td> <input type="text" id="tarifa1" value="{{ art.tarifa1 }}"> </td>
                   <td>
-                      {% if art.tarifa1 == 0.0 %}
-                          <button name="button" class="button is-warning" id="submit-yellow-btn">Guardar</button>
-                       {% else %}
-                          <!-- Cuando ya he guardado el valor, cambio el color del botón -->
-                          <button name="button" class="button is-success">Guardar</button>
-                      {% endif %}
+                    <button name="button" class="button is-warning" id="submit-yellow-btn">Guardar</button>
                   </td>
                 </tr>
               </form>

@@ -27,14 +27,16 @@ def detail(request, articulo_id):
 def guarda(request):
     # Formulario con datos, siempre será POST
     if request.method == 'POST':
-        codigo = request.POST['codigo']
-        descripcion = request.POST['descripcion']
-        tarifa1 = request.POST['tarifa1']
+        # form = ArticuloForm(request.POST)
+        a = Articulo.objects.get(pk=1)
+        form = ArticuloForm(request.POST, instance=a)
+        form.save()
 
-        Articulo.objects.create(
-            codigo = codigo,
-            descripcion = descripcion,
-            tarifa1 = tarifa1
-        )
+        # si los datos son validos
+        # if form.is_valid():
+            # codigo = request.POST['codigo']
+            # descripcion = request.POST['descripcion']
+            # tarifa1 = request.POST['tarifa1']
+            # form.save()
 
-        return HttpResponse('')
+        return HttpResponse(request)

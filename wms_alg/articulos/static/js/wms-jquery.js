@@ -1,24 +1,23 @@
 $(document).ready(function() {
   // jQuery code to be added in here.
-  // $("#submit-yellow-btn").click( function(event) {
-  //         alert("You clicked the button using JQuery!");
-  // });
-
-  $(document).on('submit', '#form1', function(e) {
+  $(form).on('submit', function(e) {
     // Prevent the page from getting refreshed
     e.preventDefault();
 
     $.ajax({
       type: 'POST',
-      url: '/articulo/'+$('form')+'/guarda/',
+      url: '/articulos/guarda/',
       data: {
         codigo:$('#codigo').val(),
         descripcion:$('#descripcion').val(),
         tarifa1:$('#tarifa1').val(),
-        csrfmiddlewaretoken:$('input[name=csfrmiddlewaretoken]').val()
+        csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
       },
       success:function(){
-        alert('Updated Articulo');
+        alert('Actualizado !');
+      },
+      error: function (ajaxContext) {
+        alert(ajaxContext.responseText)
       }
     })
   })
